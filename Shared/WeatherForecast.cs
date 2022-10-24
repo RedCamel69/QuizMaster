@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BlazorApp.Shared
+namespace QuizMaster.Shared
 {
     public class WeatherForecast
     {

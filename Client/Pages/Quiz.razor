@@ -1,0 +1,52 @@
+﻿@page "/quiz"
+@using QuizMaster.Shared
+@inject IQuizService QuizService
+
+
+<h3>Quiz</h3>
+
+@if (currentQuiz != null)
+{
+    <h2>@currentQuiz.Title.</h2>
+
+    foreach (Question q in currentQuiz.Questions)
+    {
+        <h2>@q.QuestionTitle</h2>
+
+        foreach (string a in q.Options)
+        {
+            <h3>@a</h3>
+        }
+    }
+
+}
+
+@code {
+
+    public QuizMaster.Shared.Quiz currentQuiz { get; set; } = new QuizMaster.Shared.Quiz();
+    protected int questionIndex = 0;
+    protected int score = 0;
+
+    protected async override Task OnInitializedAsync()
+    {
+        currentQuiz = await QuizService.GetQuiz();
+
+        //return base.OnInitializedAsync();
+    }
+
+    protected void OptionSelected(int option)
+    {
+        if (option == currentQuiz.Questions[questionIndex].Answer)
+        {
+            score++;
+        }
+        questionIndex++;
+    }
+
+    protected void RestartQuiz()
+    {
+        score = 0;
+        questionIndex = 0;
+    }
+
+}

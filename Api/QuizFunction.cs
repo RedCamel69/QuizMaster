@@ -26,33 +26,19 @@ namespace BlazorApp.Api
             {
                 new Question()
                 {
-                     QuestionText = "What year was Star Wars first released in the US",
-                      Answers = new List<Answer>()
-                      {
-                           new Answer()
-                           {
-                                AnswerText ="1976",
-                                IsCorrect = false
-                           },
-                            new Answer()
-                           {
-                                AnswerText ="1977",
-                                IsCorrect = true
-                           },
-                            new Answer()
-                           {
-                                AnswerText ="1978",
-                                IsCorrect = false
-                           },
-                            new Answer()
-                           {
-                                AnswerText ="1980",
-                                IsCorrect = false
-                           }
-                      }
+                    QuestionTitle = "What year was Star Wars first released in the US",
+                     Options = new List<string>() { "1978", "1977", "2001", "1965" },
+                       Answer=2
+                },
+                                new Question()
+                {
+                      QuestionTitle = "What year was ET first released in the US",
+                     Options = new List<string>() { "1978", "1977", "1981", "1965" },
+                       Answer=3
                 }
+
             };
-           
+
             return new OkObjectResult(quiz);
         }
     }

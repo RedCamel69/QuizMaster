@@ -12,14 +12,8 @@ namespace QuizMaster.Shared
     }
     public class Question
     {
-        public string QuestionText { get; set; }
-        public List<Answer> Answers { get; set; }
+        public string QuestionTitle { get; set; } = string.Empty;
+        public IEnumerable<string> Options { get; set; } = new List<string>();
+        public int Answer { get; set; } = 1;
     }
-
-    public class Answer { 
-
-        public string AnswerText { get;set; }
-        public bool IsCorrect { get;set;}
-    }
-
 }
