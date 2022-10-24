@@ -14,6 +14,6 @@ namespace QuizMaster.Shared
     {
         public string QuestionTitle { get; set; } = string.Empty;
         public IEnumerable<string> Options { get; set; } = new List<string>();
-        public int Answer { get; set; } = 1;
+        public string Answer { get; set; } = String.Empty;
     }
 }

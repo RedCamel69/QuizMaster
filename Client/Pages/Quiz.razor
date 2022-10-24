@@ -2,22 +2,56 @@
 @using QuizMaster.Shared
 @inject IQuizService QuizService
 
-
-<h3>Quiz</h3>
-
 @if (currentQuiz != null)
 {
-    <h2>@currentQuiz.Title.</h2>
-
-    foreach (Question q in currentQuiz.Questions)
-    {
-        <h2>@q.QuestionTitle</h2>
-
-        foreach (string a in q.Options)
-        {
-            <h3>@a</h3>
-        }
-    }
+    <div class="container">
+        <div class="quiz">
+            @if (currentQuiz.Questions!=null)
+            {
+            @if (questionIndex < currentQuiz.Questions.Count())
+            {
+                <div class="app-title">
+                    Quizzing!
+                </div>
+                <div class="quiz-header">
+                    @currentQuiz.Questions[questionIndex].QuestionTitle
+                </div>
+                <div class="quiz-body">
+                    @foreach (var option in currentQuiz.Questions[questionIndex].Options)
+                    {
+                        <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="app-title">
+                    @if (score > (currentQuiz.Questions.Count / 2))
+                    {
+                        <h2>winner!</h2>
+                            <img src="https://img.icons8.com/ios-filled/50/000000/trophy.png" />
+                        
+                    }
+                    else
+                    {
+                        <h2>loser!</h2>
+                        @*<img src="https://img.icons8.com/color/96/000000/lose.png" />*@
+                    }
+                </div>
+                <div class="app-title">
+                    @(score > (currentQuiz.Questions.Count() / 2) ? "Congratulation" : "Better Luck Next Time")
+                </div>
+                <div class="quiz-header">
+                    <b>You scored @score points!</b>
+                </div>
+                <div class="quiz-footer">
+                    <button class="next-btn" @onclick="@RestartQuiz">Play Again</button>
+                </div>
+            }
+            }
+        </div>
+    </div>
+ 
 
 }
 
@@ -34,7 +68,7 @@
         //return base.OnInitializedAsync();
     }
 
-    protected void OptionSelected(int option)
+    protected void OptionSelected(string option)
     {
         if (option == currentQuiz.Questions[questionIndex].Answer)
         {

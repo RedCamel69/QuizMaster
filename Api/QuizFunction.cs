@@ -28,13 +28,13 @@ namespace BlazorApp.Api
                 {
                     QuestionTitle = "What year was Star Wars first released in the US",
                      Options = new List<string>() { "1978", "1977", "2001", "1965" },
-                       Answer=2
+                       Answer="1977"
                 },
                                 new Question()
                 {
                       QuestionTitle = "What year was ET first released in the US",
                      Options = new List<string>() { "1978", "1977", "1981", "1965" },
-                       Answer=3
+                       Answer="1981"
                 }
 
             };
